@@ -5,6 +5,7 @@ const csurf = require("csurf");
 const helmet = require("helmet");
 const cookieParser = require("cookie-parser");
 const routes = require("./routes");
+const apiRoutes = require("./routes/api")
 const { environment } = require("./config");
 const isProduction = environment === "production";
 const { ValidationError } = require("sequelize");
@@ -37,6 +38,7 @@ app.use(
 );
 
 app.use(routes);
+app.use('/api', apiRoutes)
 
 //404 error handler
 app.use((_req, _res, next) => {
